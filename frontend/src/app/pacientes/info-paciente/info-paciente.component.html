@@ -1,0 +1,86 @@
+<div *ngIf="paciente">
+    <div class="row">
+        <h5 class="col-11" mat-dialog-title>Ficha del Paciente</h5>
+        <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+    </div>
+    <div mat-dialog-content>
+        <div class="card-body">
+            <!-- Info del paciente -->
+            <div class="info-text row">
+
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Nombre: </span>
+                    <span> {{ paciente.nombre }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Fecha de nacimiento: </span>
+                    <span> {{ paciente.fecha_nacimiento | date: 'dd/MM/yyyy' }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">R.U.T.: </span>
+                    <span> {{ paciente.rut }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Dirección: </span>
+                    <span> {{ paciente.direccion }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Teléfono Fijo: </span>
+                    <span> {{ paciente.tel_fijo }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Teléfono Celular: </span>
+                    <span> {{ paciente.tel_celular }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Correo Electrónico: </span>
+                    <span> {{ paciente.correo }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Escolaridad: </span>
+                    <span> {{ paciente.escolaridad }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Ocupación: </span>
+                    <span> {{ paciente.ocupacion }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Diagnóstico: </span>
+                    <span> {{ paciente.diagnostico }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Días en hospital: </span>
+                    <span> {{ paciente.dias_hospital }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Exámenes realizados </span>
+                    <span> {{ paciente.examenes_realizados }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Historial clínica </span>
+                    <span> {{ paciente.historico_clinica }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Nombre del familiar a cargo: </span>
+                    <span> {{ paciente.familiar_nombre }} </span>
+                </div>
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Parentesco del familiar a cargo: </span>
+                    <span> {{ paciente.familiar_parentesco }} </span>
+                </div>
+                <div class="col-12 m-1" *ngIf="responsables.length>0">
+                    <span class="font-weight-bold">Responsables:</span>
+                    <div *ngFor="let responsable of responsables">
+                        <span class="ml-2"> • {{ responsable.nombre }} ({{ responsable.perfil | titlecase }}) </span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!paciente" class="text-center">
+    <span>Cargando...</span>
+</div>

@@ -1,0 +1,53 @@
+<div class="m-2" *ngIf="usuarios">
+
+    <!-- Título -->
+    <div class="card m-2">
+        <span class="title-text ml-4">Gestión de Usuarios</span>
+    </div>
+
+    <div class="row card m-2">
+
+        <div class="col-12 col-lg-12 card-content">
+            <!-- Tabla con lista de usuarios -->
+            <table class="info-text striped" *ngIf="usuarios && usuarios.length>0">
+                <thead class="font-weight-bold">
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th class="text-right"><i class="material-icons tiny mr-1">settings</i>Gestión Usuarios</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.correo }}</td>
+                        <td class="text-right">
+                            <a (click)="verUsuario(usuario.auth_id)" title="Ver Detalle">
+                                <i class="material-icons mr-2" style="cursor: pointer">search</i>
+                            </a>
+                            <a (click)="editUsuario(usuario)" title="Editar">
+                                <i class="material-icons mr-2" style="cursor: pointer">edit</i>
+                            </a>
+                            <a (click)="deleteUsuario(usuario)" title="Eliminar">
+                                <i class="material-icons mr-2" style="cursor: pointer">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Mensaje sin info de pacientes -->
+            <div class="info-text text-center m-2" *ngIf="usuarios && usuarios.length==0">
+                <p class="mb-2" style="font-style: oblique">No se encontraron usuarios registrados.</p>
+                <p>Presione el botón <b>Nuevo Usuario</b> para registrar un nuevo usuario.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Botón de registro -->
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <button type="button" class="btn cyan darken-2 ml-2" (click)="crearUsuario()">
+                <i class="material-icons left mr-1">add_box</i>
+                Nuevo Usuario
+            </button>
+        </div>
+        <div class="m-4">&nbsp;</div>
+    </div>
+</div>

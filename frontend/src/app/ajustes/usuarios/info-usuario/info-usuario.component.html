@@ -1,0 +1,33 @@
+<div *ngIf="usuario">
+    <div class="row">
+        <h5 class="col-11" mat-dialog-title>Detalle del Usuario</h5>
+        <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+    </div>
+    <div mat-dialog-content>
+        <div class="card-body">
+            <!-- Info del paciente -->
+            <div class="info-text row">
+
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Nombre: </span>
+                    <span> {{ usuario.nombre }} </span>
+                </div>
+
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Correo: </span>
+                    <span> {{ usuario.correo }} </span>
+                </div>
+
+                <div class="col-12 m-1">
+                    <span class="font-weight-bold">Tipo de Perfil: </span>
+                    <span> {{ usuario.perfil | titlecase }} </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!usuario" class="text-center">
+    <span>Cargando...</span>
+</div>

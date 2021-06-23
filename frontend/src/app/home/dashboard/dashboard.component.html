@@ -1,0 +1,415 @@
+<div class="m-2">
+
+    <!-- Título -->
+    <div class="card m-2">
+        <span class="title-text ml-4">Dashboard Principal</span>
+    </div>
+
+    <div class="card m-2">
+
+        <div class="card-content">
+
+            <!--*** Dashboard Pro ***-->
+            <div class="row" *ngIf="permisoDashboardPro">
+
+                <!-- Tarjetas de información -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="card cyan darken-2">
+                        <div class="card-content white-text">
+                            <span class="card-title">Pacientes</span>
+                            <p>Gestione la ficha de un paciente y consulte su registro histórico de actividades
+                                para evaluar su progreso en la plataforma.</p>
+                        </div>
+                        <div class="card-action">
+                            <a style="color: white;" routerLink="/pacientes">↪ IR A PACIENTES</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="card amber darken-3">
+                        <div class="card-content white-text">
+                            <span class="card-title">Actividades</span>
+                            <p>Personalice y realice alguna de las 7 actividades disponibles destinadas
+                                a apoyar las distintas necesidades en las sesiones de terapia de los pacientes.</p>
+                        </div>
+                        <div class="card-action">
+                            <a style="color: white;" routerLink="/actividades">↪ IR A ACTIVIDADES</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="card light-green">
+                        <div class="card-content white-text">
+                            <span class="card-title">Imágenes</span>
+                            <p>Gestione y consulte las imágenes que serán utilizadas en cada una de las actividades
+                                disponibles en la plataforma.</p>
+                        </div>
+                        <div class="card-action">
+                            <a style="color: white;" routerLink="/imagenes">↪ IR A IMÁGENES</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bar Chart -->
+                <div class="col-lg-6 col-12" *ngIf="pacientes">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-0 p-0" *ngIf="pacientes.length > 0">
+                        <div class="card grey lighten-5">
+                            <div class="card-content white-text">
+                                <!-- Título -->
+                                <div class="info-text text-center col-lg-12 col-12">
+                                    Progreso del paciente en últimas actividades realizadas
+                                </div>
+                                <!-- Selección del paciente -->
+                                <div class="col-lg-12 col-12 text-right mt-1" *ngIf="pacientes.length > 0">
+                                    <mat-form-field>
+                                        <mat-label>Seleccionar Paciente</mat-label>
+                                        <mat-select name="pacienteBar" [(ngModel)]="defaultPacienteBar">
+                                            <mat-option *ngFor="let paciente of pacientesBar" [value]="paciente._id"
+                                                (click)="pacienteSelectedBar(paciente._id)">
+                                                {{paciente.nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Gráfico chart.js -->
+                                <div style="display: block" *ngIf="chartReady && !chartEmpty">
+                                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                        [options]="barChartOptions" [legend]="barChartLegend"
+                                        [chartType]="barChartType">
+                                    </canvas>
+                                </div>
+                                <!-- Cargando... -->
+                                <div *ngIf="!chartReady" class="text-center loading-text">
+                                    <div class="preloader-wrapper small active">
+                                        <div class="spinner-layer spinner-lightblue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Cargando...</p>
+                                </div>
+                                <!-- Mensaje chart vacío -->
+                                <div class="text-center msnje-text m-2" *ngIf="chartReady && chartEmpty">
+                                    <p>Sin información sobre registro de actividades del paciente.</p>
+                                    <p>Realice una actividad para mostrar estadísticas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Donut Chart -->
+                <div class="col-lg-6 col-12" *ngIf="pacientes">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-0 p-0" *ngIf="pacientes.length > 0">
+                        <div class="card grey lighten-5">
+                            <div class="card-content white-text">
+                                <!-- Título -->
+                                <div class="info-text text-center col-lg-12 col-12">
+                                    Histórico de actividades realizadas por el paciente
+                                </div>
+                                <!-- Selección del paciente -->
+                                <div class="col-lg-12 col-12 text-right mt-1" *ngIf="pacientes.length > 0">
+                                    <mat-form-field>
+                                        <mat-label>Seleccionar Paciente</mat-label>
+                                        <mat-select name="pacienteDonut" [(ngModel)]="defaultPacienteDonut">
+                                            <mat-option *ngFor="let paciente of pacientesDonut" [value]="paciente._id"
+                                                (click)="pacienteSelectedDonut(paciente._id)">
+                                                {{paciente.nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Gráfico chart.js -->
+                                <div style="display: block !important;" *ngIf="DchartReady && !DchartEmpty">
+                                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                                        [chartType]="doughnutChartType"></canvas>
+                                </div>
+                                <!-- Cargando... -->
+                                <div *ngIf="!DchartReady" class="text-center loading-text">
+                                    <div class="preloader-wrapper small active">
+                                        <div class="spinner-layer spinner-lightblue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Cargando...</p>
+                                </div>
+                                <!-- Mensaje chart vacío -->
+                                <div class="text-center msnje-text m-2" *ngIf="DchartReady && DchartEmpty">
+                                    <p>Sin información sobre registro de actividades del paciente.</p>
+                                    <p>Realice una actividad para mostrar estadísticas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--*********************************************************************-->
+            <!--*********************************************************************-->
+
+            <!--*** Dashboard Basic ***-->
+            <div class="row" *ngIf="permisoDashboardBasic">
+
+                <!-- Tarjetas de información -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card cyan darken-2">
+                        <div class="card-content white-text" style="text-align: justify;">
+                            <span class="card-title">Información General</span>
+                            <p>¡Hola <b>{{ usuario.nombre }}</b>! En esta plataforma encontrarás las distintas
+                                actividades fonoaudiológicas que los
+                                profesionales designan a sus
+                                pacientes. En este dashboard encontrarás información de la plataforma junto
+                                con gráficas que reflejan parte del progreso del paciente en las actividades.
+                                En la sección de Actividades se encuentran todas las tareas
+                                disponibles para realizar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card amber darken-3">
+                        <div class="card-content white-text">
+                            <span class="card-title">Actividades</span>
+                            <p>En esta sección encontrarás la lista de tareas relacionadas con actividades
+                                fonoaudiológicas que los profesionales a cargo han designado para ti. Al ingresar,
+                                puedes buscar las actividades que tienes pendientes y comenzar a realizarlas cuando tú
+                                lo desees. </p>
+                        </div>
+                        <div class="card-action">
+                            <a style="color: white;" routerLink="/actividades">↪ IR A ACTIVIDADES</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ***** VISTA PROFESIONAL / SUPERVISOR ***** -->
+
+                <!-- Bar Chart -->
+                <div class="col-lg-6 col-12" *ngIf="pacientes && tipoPerfil == 'multiple'">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-0 p-0">
+                        <div class="card grey lighten-5">
+                            <div class="card-content white-text">
+                                <!-- Título -->
+                                <div class="info-text text-center col-lg-12 col-12">
+                                    Progreso del paciente en últimas actividades realizadas
+                                </div>
+                                <!-- Selección del paciente -->
+                                <div class="col-lg-12 col-12 text-right mt-1" *ngIf="pacientes.length > 0">
+                                    <mat-form-field>
+                                        <mat-label>Seleccionar Paciente</mat-label>
+                                        <mat-select name="pacienteBar" [(ngModel)]="defaultPacienteBar">
+                                            <mat-option *ngFor="let paciente of pacientesBar" [value]="paciente._id"
+                                                (click)="pacienteSelectedBar(paciente._id)">
+                                                {{paciente.nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Gráfico chart.js -->
+                                <div style="display: block" *ngIf="chartReady && !chartEmpty">
+                                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                        [options]="barChartOptions" [legend]="barChartLegend"
+                                        [chartType]="barChartType">
+                                    </canvas>
+                                </div>
+                                <!-- Cargando... -->
+                                <div *ngIf="!chartReady" class="text-center loading-text">
+                                    <div class="preloader-wrapper small active">
+                                        <div class="spinner-layer spinner-lightblue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Cargando...</p>
+                                </div>
+                                <!-- Mensaje chart vacío -->
+                                <div class="text-center msnje-text m-2" *ngIf="chartReady && chartEmpty">
+                                    <p>Sin información sobre registro de actividades del paciente.</p>
+                                    <p>Realice una actividad para mostrar estadísticas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Donut Chart -->
+                <div class="col-lg-6 col-12" *ngIf="pacientes && tipoPerfil == 'multiple'">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-0 p-0">
+                        <div class="card grey lighten-5">
+                            <div class="card-content white-text">
+                                <!-- Título -->
+                                <div class="info-text text-center col-lg-12 col-12">
+                                    Histórico de actividades realizadas por el paciente
+                                </div>
+                                <!-- Selección del paciente -->
+                                <div class="col-lg-12 col-12 text-right mt-1" *ngIf="pacientes.length > 0">
+                                    <mat-form-field>
+                                        <mat-label>Seleccionar Paciente</mat-label>
+                                        <mat-select name="pacienteDonut" [(ngModel)]="defaultPacienteDonut">
+                                            <mat-option *ngFor="let paciente of pacientesDonut" [value]="paciente._id"
+                                                (click)="pacienteSelectedDonut(paciente._id)">
+                                                {{paciente.nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- Gráfico chart.js -->
+                                <div style="display: block !important;" *ngIf="DchartReady && !DchartEmpty">
+                                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                                        [chartType]="doughnutChartType"></canvas>
+                                </div>
+                                <!-- Cargando... -->
+                                <div *ngIf="!DchartReady" class="text-center loading-text">
+                                    <div class="preloader-wrapper small active">
+                                        <div class="spinner-layer spinner-lightblue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Cargando...</p>
+                                </div>
+                                <!-- Mensaje chart vacío -->
+                                <div class="text-center msnje-text m-2" *ngIf="DchartReady && DchartEmpty">
+                                    <p>Sin información sobre registro de actividades del paciente.</p>
+                                    <p>Realice una actividad para mostrar estadísticas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ***** VISTA PACIENTE ***** -->
+
+                <!-- Bar Chart -->
+                <div class="col-lg-6 col-12" *ngIf="paciente && tipoPerfil == 'single'">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-0 p-0">
+                        <div class="card grey lighten-5">
+                            <div class="card-content white-text">
+                                <!-- Título -->
+                                <div class="info-text text-center col-lg-12 col-12">
+                                    Progreso del paciente en últimas actividades realizadas
+                                </div>
+                                <!-- Gráfico chart.js -->
+                                <div style="display: block" *ngIf="chartReady && !chartEmpty">
+                                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                        [options]="barChartOptions" [legend]="barChartLegend"
+                                        [chartType]="barChartType">
+                                    </canvas>
+                                </div>
+                                <!-- Cargando... -->
+                                <div *ngIf="!chartReady" class="text-center loading-text">
+                                    <div class="preloader-wrapper small active">
+                                        <div class="spinner-layer spinner-lightblue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Cargando...</p>
+                                </div>
+                                <!-- Mensaje chart vacío -->
+                                <div class="text-center msnje-text m-2" *ngIf="chartReady && chartEmpty">
+                                    <p>Sin información sobre registro de actividades del paciente.</p>
+                                    <p>Realice una actividad para mostrar estadísticas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Donut Chart -->
+                <div class="col-lg-6 col-12" *ngIf="paciente && tipoPerfil == 'single'">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-0 p-0">
+                        <div class="card grey lighten-5">
+                            <div class="card-content white-text">
+                                <!-- Título -->
+                                <div class="info-text text-center col-lg-12 col-12">
+                                    Histórico de actividades realizadas por el paciente
+                                </div>
+                                <!-- Gráfico chart.js -->
+                                <div style="display: block !important;" *ngIf="DchartReady && !DchartEmpty">
+                                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                                        [chartType]="doughnutChartType"></canvas>
+                                </div>
+                                <!-- Cargando... -->
+                                <div *ngIf="!DchartReady" class="text-center loading-text">
+                                    <div class="preloader-wrapper small active">
+                                        <div class="spinner-layer spinner-lightblue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Cargando...</p>
+                                </div>
+                                <!-- Mensaje chart vacío -->
+                                <div class="text-center msnje-text m-2" *ngIf="DchartReady && DchartEmpty">
+                                    <p>Sin información sobre registro de actividades del paciente.</p>
+                                    <p>Realice una actividad para mostrar estadísticas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>

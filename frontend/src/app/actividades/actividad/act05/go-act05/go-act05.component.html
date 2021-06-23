@@ -1,0 +1,256 @@
+<div class="m-2">
+
+    <div class="card m-2">
+        <span class="title-text ml-4">Actividad 5 - Asociar</span>
+    </div>
+
+    <div class="card m-2" *ngIf="imagenes">
+
+        <div class="card-content" *ngIf="!finActividad">
+
+            <div class="info-text m-2">
+                • Memorice: Pinche cada tarjeta para ver la imagen y asocie a su par correspondiente.
+            </div>
+
+            <span class="time-text ml-4 text-left">Tiempo: {{ display }}</span>
+
+            <span class="time-text ml-4 text-right">Intentos: {{ intentos }}</span>
+
+            <span class="time-text ml-4 text-right">Aciertos: {{ cantCorrectas }}</span>
+
+            <div class="text-center">
+                <table class="table table-bordered text-center">
+                    <tr class="text-center">
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[0].nombre)"
+                                [@flipState]="tablero[0].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0 te">
+                                    <img src="{{cards[0].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[1].nombre)"
+                                [@flipState]="tablero[1].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[1].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[2].nombre)"
+                                [@flipState]="tablero[2].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[2].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[3].nombre)"
+                                [@flipState]="tablero[3].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[3].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[4].nombre)"
+                                [@flipState]="tablero[4].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[4].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[5].nombre)"
+                                [@flipState]="tablero[5].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[5].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[6].nombre)"
+                                [@flipState]="tablero[6].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[6].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[7].nombre)"
+                                [@flipState]="tablero[7].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[7].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[8].nombre)"
+                                [@flipState]="tablero[8].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[8].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[9].nombre)"
+                                [@flipState]="tablero[9].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[9].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[10].nombre)"
+                                [@flipState]="tablero[10].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[10].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[11].nombre)"
+                                [@flipState]="tablero[11].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[11].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[12].nombre)"
+                                [@flipState]="tablero[12].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[12].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[13].nombre)"
+                                [@flipState]="tablero[13].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[13].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[14].nombre)"
+                                [@flipState]="tablero[14].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[14].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="tp-box m-0 p-0" (click)="toggleFlip(cards[15].nombre)"
+                                [@flipState]="tablero[15].state">
+                                <div class="tp-box__side tp-box__front m-0 p-0">
+                                    ?
+                                </div>
+                                <div class="tp-box__side tp-box__back m-0 p-0">
+                                    <img src="{{cards[15].urlImg}}}" width="100%" height="100%"
+                                        style="background-color: white;">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>&nbsp;</div>
+
+        </div>
+
+        <div class="card-content" *ngIf="finActividad">
+
+            <div class="row">
+                <div class="col-12 info-text m-1">
+                    <span class="m-3 font-weight-bold">Resumen de la actividad</span>
+                    <p class="m-3">• Cantidad de imágenes: {{ imagenes_original.length }}</p>
+                    <p class="m-3">• Duración de la actividad: {{ duracionActividad }} segundos.</p>
+                    <span class="m-3 font-weight-bold">Puede incluir a continuación una observación de esta
+                        actividad:</span>
+                    &nbsp;
+                    <div class="m-3 input-field">
+                        <textarea id="textarea1" [formControl]="observacionForm"
+                            class="materialize-textarea"></textarea>
+                        <label for="textarea1">Observación final</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="text-right mt-1 mr-2">
+                <button type="button" class="btn cyan darken-2" (click)="registrarActividad()">Guardar registro</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<!-- INFO  -->
+<div *ngIf="tipo=='info' || tipo=='info2'">
+    <!-- Tarjeta-->
+    <div class="col-xs-4 col-sm-6 align-self-center text-center p-0" style="max-width: 340px; min-width: 260px;">
+        <span class="text-center font-weight-bold" style="color: rgb(2, 198, 233); font-size: 1.5em;">Información</span>
+    </div>
+    <div class="p-3">
+        <div class="form-group text-center" style="font-size: 1.2em;">
+            <span [innerHTML]="mensaje"></span>
+        </div>
+    </div>
+
+    <!-- Ventana de diálogo INFO -->
+    <div class="row p-2 ml-auto" *ngIf="tipo=='info'">
+        <div class="col s12 m12 l12 text-center">
+            <button type="submit" class="btn cyan" (click)="confirmarEnvioDatos()">Ok</button>
+        </div>
+    </div>
+
+    <!-- Ventana de diálogo INFO 2 -->
+    <div class="row ml-auto" *ngIf="tipo=='info2'">
+        <div class="col s6">
+            <button type="submit" class="black-text btn white" (click)="cancelarEnvioDatos()">Cancelar</button>
+        </div>
+        <div class="col s6">
+            <button type="submit" class="btn cyan" (click)="confirmarEnvioDatos()">Confirmar</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- ELIMINAR  -->
+<div *ngIf="tipo=='eliminar'">
+    <!-- Tarjeta 1 -->
+    <div class="col-xs-4 col-sm-6 align-self-center text-center p-0" style="max-width: 340px; min-width: 260px;">
+        <span class="text-center font-weight-bold" style="color: orangered; font-size: 1.5em;">¡Atención!</span>
+    </div>
+    <div class="p-3">
+        <div class="form-group text-center" style="font-size: 1.2em;">
+            <span [innerHTML]="mensaje"></span>
+        </div>
+    </div>
+
+    <!-- Ventana de diálogo de confirmación -->
+    <div class="row ml-auto">
+        <div class="col s6">
+            <button type="submit" class="black-text btn white" (click)="cancelarEnvioDatos()">Cancelar</button>
+        </div>
+        <div class="col s6">
+            <button type="submit" class="btn red" (click)="confirmarEnvioDatos()">Confirmar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-title>Acceso a la Plataforma</mat-card-title>
+  <mat-card-content>
+
+    <div class="displayTable m-2">
+      <div class="displayTableCell">
+
+        <div class="authBlock">
+          <div class="formGroup ifield">
+            <input type="text" class="formControl" placeholder="Correo electrónico" #userName required>
+          </div>
+
+          <div class="formGroup ifield">
+            <input type="password" class="formControl" placeholder="Contraseña" #userPassword required>
+          </div>
+
+          <!-- Calling SignIn Api from AuthService -->
+          <div class="formGroup text-right m-2">
+            <input type="button" class="btn cyan darken-2" value="Iniciar sesión"
+              (click)="SignIn(userName.value, userPassword.value)">
+          </div>
+
+
+          <div class="forgotPassword text-center mt-3">
+            <span routerLink="/reset-password">¿Olvidó su contraseña?</span>
+          </div>
+        </div>
+        <!-- 
+          <div class="redirectToLogin">
+            <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
+          </div>
+        -->
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

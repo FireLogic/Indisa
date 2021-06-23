@@ -1,0 +1,110 @@
+<div class="row">
+    <h5 class="col-11" mat-dialog-title>Registrar Nuevo Paciente</h5>
+    <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+</div>
+<div mat-dialog-content>
+    <div class="card-body">
+        <!-- Formulario para registrar un nuevo paciente -->
+        <form [formGroup]="pacienteGroup">
+            <div class="form-row">
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Nombre</label>
+                    <input type="text" name="nombre" formControlName="nombre" placeholder="Nombres y apellidos">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">RUT</label>
+                    <input type="text" name="rut" formControlName="rut" placeholder="Ej: 9.876.543-k">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Fecha de nacimiento</label>
+                    <input type="date" name="fecha_nacimiento" formControlName="fecha_nacimiento">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Dirección</label>
+                    <input type="text" name="direccion" formControlName="direccion" placeholder="Dirección particular">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Teléfono Fijo</label>
+                    <input type="text" name="tel_fijo" min="5" pattern="^[0-9]*" formControlName="tel_fijo"
+                        placeholder="Ej: 22654321">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Teléfono Celular</label>
+                    <input type="text" name="tel_celular" min="9" pattern="[+0-9]*" formControlName="tel_celular"
+                        placeholder="Ej: 987654321">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Correo Electrónico</label>
+                    <input type="text" name="correo" formControlName="correo" placeholder="Correo electrónico">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Escolaridad</label>
+                    <input type="text" name="escolariad" formControlName="escolaridad"
+                        placeholder="Nivel de escolaridad">
+
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Ocupación</label>
+                    <input type="text" name="ocupacion" formControlName="ocupacion" placeholder="Ocupación actual">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Diagnóstico</label>
+                    <input type="text" name="diagnostico" formControlName="diagnostico"
+                        placeholder="Diagnóstico actual">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Días en hospital</label>
+                    <input type="number" min="0" name="dias_hospital" formControlName="dias_hospital"
+                        placeholder="Ej: 25">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Exámenes realizados</label>
+                    <input type="text" name="examenes_realizados" formControlName="examenes_realizados"
+                        placeholder="Exámenes realizados">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Historial clínica</label>
+                    <input type="text" name="historico_clinica" formControlName="historico_clinica"
+                        placeholder="Historial clínica">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Nombre del familiar a cargo</label>
+                    <input type="text" name="familiar_nombre" formControlName="familiar_nombre"
+                        placeholder="Nombre completo del familar a cargo">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label class="m-0 p-0">Parentesco del familiar a cargo</label>
+                    <input type="text" name="familiar_parentesco" formControlName="familiar_parentesco"
+                        placeholder="Parentesco del familiar a cargo">
+                </div>
+
+                <!-- Botón de registro -->
+                <div class="container col-12 mt-2">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="pacienteGroup">
+                            <button type="button" [disabled]="pacienteGroup.invalid" class="btn cyan darken-2 ml-2"
+                                type="submit" name="action" (click)="addPaciente()">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

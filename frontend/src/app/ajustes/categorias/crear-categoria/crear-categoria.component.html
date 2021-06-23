@@ -1,0 +1,47 @@
+<div class="row">
+    <h5 class="col-10" mat-dialog-title>Registrar Nueva Categoría</h5>
+    <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+</div>
+<div mat-dialog-content>
+    <div class="card-body">
+        <form [formGroup]="categoriaGroup">
+            <div class="form-row">
+
+                <div class="col-12 input-field">
+                    <input id="name" type="text" name="nombre" formControlName="nombre">
+                    <label>Nombre</label>
+                </div>
+
+
+                <mat-form-field class="col-12 example-chip-list">
+                    <mat-chip-list #chipList aria-label="Subcategoria selection">
+                        <mat-chip *ngFor="let subcategoria of subcategorias" [selectable]="selectable"
+                            [removable]="removable" (removed)="remove(subcategoria)">
+                            {{ subcategoria }}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Agrega subcategorías..." [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                </mat-form-field>
+
+
+
+
+
+                <div class="container col-12 mt-2">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="categoriaGroup">
+                            <button type="button" [disabled]="categoriaGroup.invalid || subcategorias.length < 1"
+                                class="btn cyan darken-2 ml-2" type="submit" name="action"
+                                (click)="crearCategoria()">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

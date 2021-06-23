@@ -1,0 +1,147 @@
+<div *ngIf="imagen && categorias">
+    <div class="row">
+        <h5 class="col-11" mat-dialog-title>Edición de la Imagen</h5>
+        <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+    </div>
+    <div mat-dialog-content>
+        <div class="card-body">
+            <!-- Imagen info a editar -->
+            <div class="info-text form-row" [formGroup]="imagenGroup">
+
+                <div class="col-sm-6 col-12">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" [(ngModel)]="imagen.nombre" formControlName="nombre"
+                        placeholder="Nombre">
+                </div>
+
+
+                <div class="col-sm-6 col-12">
+                    <label>Nº de sílabas</label>
+                    <input type="number" min="1" max="10" name="dias_hospital" formControlName="silabas"
+                        [(ngModel)]="imagen.silabas">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label>Definición</label>
+                    <input type="text" name="definicion" [(ngModel)]="imagen.definicion" formControlName="definicion">
+                </div>
+
+                <div class=" col-sm-6 col-12 input-field">
+                    <mat-form-field>
+                        <mat-label>Categoría</mat-label>
+                        <mat-select name="categoria" formControlName="categoria" [(ngModel)]="imagen.categoria">
+                            <mat-option (click)="getCategoria(categoria)" *ngFor="let categoria of categorias"
+                                [value]="categoria.nombre">
+                                {{ categoria.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <a title="Añadir Categoría"
+                        class="btn-floating btn-small waves-effect waves-light cyan darken-2 ml-2"
+                        (click)="addCategoria()">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-12 input-field">
+                    <mat-form-field>
+                        <mat-label>Sub-categoría</mat-label>
+                        <mat-select name="subcategoria" formControlName="subcategoria"
+                            [(ngModel)]="imagen.subcategoria">
+                            <mat-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">
+                                {{ subcategoria }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-6 col-12 input-field">
+                    <mat-form-field>
+                        <mat-label>Fonema</mat-label>
+                        <mat-select formControlName="fonema" [(ngModel)]="imagen.fonema">
+                            <mat-optgroup *ngFor="let fonema of fonemas" [label]="fonema.nombre">
+                                <mat-option *ngFor="let sonido of fonema.sonidos" [value]="sonido">
+                                    {{ sonido }}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-6 col-12 input-field">
+                    <mat-form-field>
+                        <mat-label>Dífono(s)</mat-label>
+                        <mat-select formControlName="difono" [(ngModel)]="imagen.difono" multiple>
+                            <mat-optgroup *ngFor="let difono of difonos" [label]="difono.nombre">
+                                <mat-option *ngFor="let val of difono.valores" [value]="val">
+                                    {{ val }}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-6 col-12 text-center">
+                    <img [src]=imagen.urlImg height="150" width="185">
+                </div>
+
+                <div class="col-sm-6 col-12 mt-4">
+                    <i class="material-icons tiny mr-1">image</i>
+                    <mat-label>Elegir una nueva imagen (jpg o png)</mat-label>
+                    <div class="m-3">
+                        <input type="file" (change)="uploadImagen($event)" accept=".png,.jpg,.jpeg"
+                            formControlName="urlImg" />
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-12 text-center mt-4">
+                    <button title="Reproducir audio" type="button" class="btn btn-largue orange darken-3 ml-2"
+                        (click)="playAudio()">
+                        <i class="material-icons center">play_circle_outline</i>
+                    </button>
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <i class="material-icons tiny mr-1">audiotrack</i>
+                    <mat-label>Elegir un nuevo archivo de audio (mp3)</mat-label>
+                    <div class="m-3">
+                        <input type="file" (change)="uploadAudio($event)" accept=".mp3" formControlName="urlAudio" />
+                    </div>
+                </div>
+
+                <div class="container col-12 mt-2">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="imagenGroup">
+                            <button type="button" [disabled]="imagenGroup.pristine || imagenGroup.invalid"
+                                class="btn waves-effect waves-light" type="submit" name="action"
+                                class="btn cyan darken-2 ml-2" (click)="updateImagen()">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cargando... -->
+<div *ngIf="!imagen || !categorias" class="text-center info-text">
+
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <p>Cargando...</p>
+
+</div>

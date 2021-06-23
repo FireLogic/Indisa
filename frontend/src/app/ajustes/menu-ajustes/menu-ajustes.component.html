@@ -1,0 +1,39 @@
+<div class="m-2">
+
+    <div class="card m-2">
+        <span class="title-text ml-4">Ajustes Generales</span>
+    </div>
+
+    <div class="row card m-2">
+
+        <div class="col-12 m-1">
+
+            <table>
+                <tbody>
+                    <tr *ngIf="permisoPerfil">
+                        <td>
+                            <i class="material-icons tiny mr-2">account_circle</i>
+                            <span class="info-text" (click)="goPerfil()">Perfil del usuario</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="permisoCategorias">
+                        <td>
+                            <i class="material-icons tiny mr-2">collections</i>
+                            <span class="info-text" (click)="goCategorias()">Gestión de Categorías</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="permisoUsuarios">
+                        <td>
+                            <i class="material-icons tiny mr-2">group</i>
+                            <span class="info-text" (click)="goUsuarios()">Gestión de Usuarios</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
+</div>

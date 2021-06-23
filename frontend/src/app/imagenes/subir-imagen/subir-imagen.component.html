@@ -1,0 +1,113 @@
+<div class="row">
+    <h5 class="col-11" mat-dialog-title>Registrar Nueva Imagen</h5>
+    <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+</div>
+<div mat-dialog-content>
+    <div class="card-body">
+        <!-- Formulario para subir nueva imagen -->
+        <form [formGroup]="imagenGroup">
+            <div class="form-row">
+
+                <div class="col-6 input-field">
+                    <input type="text" name="nombre" formControlName="nombre">
+                    <label>Nombre</label>
+                </div>
+
+                <div class="col-6 input-field">
+                    <input type="number" min="1" max="10" name="dias_hospital" formControlName="silabas">
+                    <label>Nº de sílabas</label>
+                </div>
+
+                <div class="col-12 input-field">
+                    <input type="text" name="definicion" formControlName="definicion">
+                    <label>Definición</label>
+                </div>
+
+                <div class=" col-6 input-field">
+                    <mat-form-field>
+                        <mat-label>Categoría</mat-label>
+                        <mat-select name="categoria" formControlName="categoria">
+                            <mat-option (click)="getCategoria(categoria)" *ngFor="let categoria of categorias"
+                                [value]="categoria.nombre">
+                                {{ categoria.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <a title="Añadir Categoría"
+                        class="btn-floating btn-small waves-effect waves-light cyan darken-2 ml-2"
+                        (click)="addCategoria()">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+
+                <div class="col-6 input-field">
+                    <mat-form-field>
+                        <mat-label>Sub-categoría</mat-label>
+                        <mat-select name="subcategoria" formControlName="subcategoria">
+                            <mat-option *ngFor="let subcategoria of subcategorias" [value]="subcategoria">
+                                {{ subcategoria }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6 input-field">
+                    <mat-form-field>
+                        <mat-label>Fonema</mat-label>
+                        <mat-select formControlName="fonema">
+                            <mat-optgroup *ngFor="let fonema of fonemas" [label]="fonema.nombre">
+                                <mat-option *ngFor="let sonido of fonema.sonidos" [value]="sonido">
+                                    {{ sonido }}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6 input-field">
+                    <mat-form-field>
+                        <mat-label>Dífono(s)</mat-label>
+                        <mat-select formControlName="difono" multiple>
+                            <mat-optgroup *ngFor="let difono of difonos" [label]="difono.nombre">
+                                <mat-option *ngFor="let val of difono.valores" [value]="val">
+                                    {{ val }}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6">
+                    <i class="material-icons tiny mr-1">image</i>
+                    <mat-label>Selecciona el archivo de imagen (jpg o png)</mat-label>
+                    <div class="m-3">
+                        <input type="file" (change)="uploadImagen($event)" accept=".png,.jpg,.jpeg"
+                            formControlName="urlImg"/>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <i class="material-icons tiny mr-1">audiotrack</i>
+                    <mat-label>Selecciona el archivo de audio (mp3)</mat-label>
+                    <div class="m-3">
+                        <input type="file" (change)="uploadAudio($event)" accept=".mp3" formControlName="urlAudio" />
+                    </div>
+                </div>
+
+                <!-- Botón de registro -->
+                <div class="container col-12 mt-3">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="imagenGroup">
+                            <button type="button"
+                                [disabled]="imagenGroup.invalid || imagenGroup.value.subcategoria==undefined"
+                                class="btn cyan darken-2 ml-2" type="submit" name="action"
+                                (click)="addImagen()">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="m-2">
+
+    <div class="card m-2">
+        <span class="title-text ml-4">Actividad 4 - Relacionar</span>
+    </div>
+
+    <div class="card m-2" *ngIf="imagenes">
+
+        <div class="card-content" *ngIf="!finActividad">
+
+            <div class="info-text m-2">
+                • Pinche una lámina y luego seleccione el nombre que le corresponde.
+            </div>
+
+            <span class="time-text ml-4">Tiempo: {{ display }}</span>
+
+            <div class="row text-center">
+
+                <div class="col-12 col-lg-4 input-position text-center mb-4" *ngFor="let card of cardsImg">
+                    <div class="image-card card transparent text-center" (click)="selectCardImg(card)">
+                        <img id="{{card._id}}" src="{{card.urlImg}}" height="350px" width="auto"
+                            oncontextmenu='return false;'>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4 m-auto text-center" *ngFor="let card of cards">
+                    <div class="input-position text-center m-1" (click)="selectCard(card)">
+                        <div id="{{card.nombre}}" class="text-card card text-center m-auto">
+                            <span class="info-cards"> {{ card.nombre }} </span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="card-content" *ngIf="finActividad">
+
+            <div class="row">
+                <div class="col-12 info-text m-1">
+                    <span class="m-3 font-weight-bold">Resumen de la actividad</span>
+                    <p class="m-3">• Cantidad de rondas: {{ cantRondas }}</p>
+                    <p class="m-3">• Cantidad de imágenes: {{ imagenes_original.length }}</p>
+                    <p class="m-3">• Duración de la actividad: {{ duracionActividad }} segundos.</p>
+                    <span class="m-3 font-weight-bold">Puede incluir a continuación una observación de esta
+                        actividad:</span>
+                    &nbsp;
+                    <div class="m-3 input-field">
+                        <textarea id="textarea1" [formControl]="observacionForm"
+                            class="materialize-textarea"></textarea>
+                        <label for="textarea1">Observación final</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="text-right mt-1 mr-2">
+                <button type="button" class="btn cyan darken-2" (click)="registrarActividad()">Guardar registro</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

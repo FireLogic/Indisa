@@ -1,0 +1,61 @@
+<div class="m-2" *ngIf="pacientes">
+
+    <!-- Título -->
+    <div class="card m-2">
+        <span class="title-text ml-4">Lista de Pacientes</span>
+    </div>
+
+    <div class="row card m-2">
+
+        <div class="col-12 col-lg-12 card-content">
+            <!-- Tabla con lista de pacientes -->
+            <table class="info-text striped" *ngIf="pacientes && pacientes.length>0">
+                <thead class="font-weight-bold">
+                    <th>Nombre</th>
+                    <th>R.U.T.</th>
+                    <th class="text-right"><i class="material-icons tiny mr-1">settings</i>Gestión Pacientes</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let paciente of pacientes">
+                        <td>{{ paciente.nombre }}</td>
+                        <td>{{ paciente.rut }}</td>
+                        <td class="text-right">
+                            <a (click)="verPaciente(paciente._id)" title="Ver Ficha">
+                                <i class="material-icons mr-2" style="cursor: pointer">assignment_ind</i>
+                            </a>
+                            <a (click)="verRegistroActividades(paciente._id)" title="Ver Registro Actividades">
+                                <i class="material-icons mr-2" style="cursor: pointer">assignment_turned_in</i>
+                            </a>
+                            <a (click)="editPaciente(paciente._id)" title="Editar" *ngIf="permisoPacientesEdit">
+                                <i class="material-icons mr-2" style="cursor: pointer">edit</i>
+                            </a>
+                            <a (click)="deletePaciente(paciente._id)" title="Eliminar" *ngIf="permisoPacientesEdit">
+                                <i class="material-icons mr-2" style="cursor: pointer">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Mensaje sin info de pacientes (edit)-->
+            <div class="info-text text-center m-2" *ngIf="pacientes && pacientes.length==0 && permisoPacientesEdit">
+                <p class="mb-2" style="font-style: oblique">No se encontraron pacientes registrados.</p>
+                <p>Presione el botón <b>Nuevo Paciente</b> para registrar un nuevo paciente.</p>
+            </div>
+            <!-- Mensaje sin info de pacientes (no-edit)-->
+            <div class="info-text text-center m-2" *ngIf="pacientes && pacientes.length==0 && !permisoPacientesEdit">
+                <p class="mb-2" style="font-style: oblique">No se encontraron pacientes registrados.</p>
+                <p>Comuníquese con el administrador para asignarle algún paciente.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Botón de registro -->
+    <div class="row" *ngIf="permisoPacientesEdit">
+        <div class="col-12 col-lg-12">
+            <button type="button" class="btn cyan darken-2 ml-2" (click)="crearPaciente()">
+                <i class="material-icons left mr-1">add_box</i>
+                Nuevo Paciente
+            </button>
+        </div>
+        <div class="m-4">&nbsp;</div>
+    </div>
+</div>

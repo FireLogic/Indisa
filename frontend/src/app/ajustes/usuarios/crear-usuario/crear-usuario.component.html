@@ -1,0 +1,45 @@
+<div class="row">
+    <h5 class="col-11" mat-dialog-title>Registrar Nuevo Usuario</h5>
+    <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+</div>
+<div mat-dialog-content>
+    <div class="card-body">
+        <!-- Formulario para registrar un nuevo paciente -->
+        <form [formGroup]="usuarioGroup">
+            <div class="form-row">
+
+                <mat-form-field class="col-12 m-0 info-text">
+                    <mat-label>Tipo de Usuario</mat-label>
+                    <mat-select name="perfil" formControlName="perfil">
+                        <mat-option *ngFor="let perfil of perfiles" [value]="perfil.value">
+                            {{ perfil.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="col-12 input-field info-text">
+                    <input type="text" name="nombre" formControlName="nombre" [(ngModel)]="defaultNombre">
+                    <label class="ml-1">Nombre</label>
+                </div>
+
+                <div class="col-12 input-field info-text">
+                    <input type="text" name="correo" formControlName="correo" [(ngModel)]="defaultCorreo">
+                    <label class="ml-1">Correo Electrónico</label>
+                </div>
+
+
+                <!-- Botón de registro -->
+                <div class="container col-12 mt-2">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="usuarioGroup">
+                            <button type="button" [disabled]="usuarioGroup.invalid" class="btn cyan darken-2 ml-2"
+                                type="submit" name="action" (click)="registerUserFire()">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

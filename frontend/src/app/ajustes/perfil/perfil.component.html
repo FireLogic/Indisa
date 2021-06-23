@@ -1,0 +1,19 @@
+<div class="m-2" *ngIf="usuario">
+
+    <div class="card m-2">
+        <span class="title-text ml-4">Perfil del usuario</span>
+    </div>
+
+    <div class="info-text row card m-2">
+
+        <div class="col-12 card-content">
+
+            <p class="m-1"><b>Nombre:</b> {{ usuario.nombre }}</p>
+            <p class="m-1"><b>Correo:</b> {{ usuario.correo }}</p>
+            <p class="m-1"><b>Tipo de Perfil:</b> {{ usuario.perfil | titlecase  }}</p>
+
+
+        </div>
+    </div>
+
+</div>

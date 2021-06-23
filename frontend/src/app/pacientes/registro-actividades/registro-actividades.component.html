@@ -1,0 +1,124 @@
+<div *ngIf="registroActividades">
+    <div *ngIf="registroActividades.length > 0">
+        <div class="row">
+            <h5 class="col-11" mat-dialog-title>Registro histórico de actividades</h5>
+            <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+        </div>
+        <div mat-dialog-content>
+            <div class="card-body">
+
+                <div class="row info-text">
+
+                    <!-- Tabla con lista de actividades realizadas por el paciente -->
+                    <div class="col-12 card-content" *ngIf="!detalleRegistro">
+                        <table class="striped">
+                            <thead class="font-weight-bold">
+                                <th>Actividad</th>
+                                <th>Fecha</th>
+                                <th>Aprobación</th>
+                                <th>Ver Detalle</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let registro of registroActividades">
+                                    <td>{{ registro.actividad.nombre }}</td>
+                                    <td>{{ registro.fecha_actividad | date: 'dd/MM/yy' }}</td>
+                                    <td>{{ registro.aprobacion }}%</td>
+                                    <td class="ml-2">
+                                        <a (click)="verDetalleRegistro(registro._id)" title="Ver detalle del registro">
+                                            <i class="material-icons" style="cursor: pointer">search</i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--Detalle de un registro de actividad -->
+                    <div class="col-12 card-content" *ngIf="detalleRegistro">
+
+                        <div class="m-1" *ngIf="registroActividad">
+                            <span> <b>Actividad:</b> {{ registroActividad.actividad.nombre }}</span>
+                        </div>
+                        <div class="m-1" *ngIf="registroActividad">
+                            <span><b>Fecha:</b> {{ registroActividad.fecha_actividad | date: 'dd/MM/yy' }}</span>
+                        </div>
+                        <div class="m-1" *ngIf="registroActividad">
+                            <span><b>Hora:</b> {{ registroActividad.fecha_actividad | date: 'h:mm:ss a' }}</span>
+                        </div>
+                        <div class="m-1" *ngIf="registroActividad">
+                            <span><b>Duración:</b> {{ duracionActividad }} <span class="help">(HH:MM:SS)</span></span>
+                        </div>
+                        <div class="m-1" *ngIf="registroActividad">
+                            <span><b>Cantidad de niveles:</b> {{ registroActividad.cant_niveles }}</span>
+                        </div>
+                        <div class="m-1" *ngIf="registroActividad">
+                            <span><b>Cantidad de errores:</b> {{ registroActividad.cant_errores }}</span>
+                        </div>
+                        <div class="m-1" *ngIf="registroActividad">
+                            <span><b>Porcentaje de aprobación:</b> {{ registroActividad.aprobacion }}%</span>
+                        </div>
+                        <div class="m-1" *ngIf="registroActividad.observacion_final">
+                            <span><b>Observación:</b> {{ registroActividad.observacion_final }}</span>
+                        </div>
+
+                        <div class="m-1" *ngIf="registroActividad">
+                            <div class="extend-text" (click)="verImgAct()"><b>Lista de imágenes utilizadas</b></div>
+                            <div *ngIf="detalleImgAct">
+                                <div class="ml-3" *ngFor="let imagen of registroActividad.imagenes_actividad">
+                                    <p class="m-0" *ngIf="registroActividad.imagenes_actividad">• {{imagen.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-1" *ngIf="registroActividad.imagenes_errores.length>0">
+                            <div class="extend-text" (click)="verImgErr()"><b>Lista de imágenes de errores</b></div>
+                            <div *ngIf="detalleImgErr">
+                                <div class="ml-3" *ngFor="let imagen of registroActividad.imagenes_errores">
+                                    <p class="m-0" *ngIf="registroActividad.imagenes_errores">• {{imagen.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón para regresar -->
+                        <div class="text-left mt-4">
+                            <button type="button" class="btn cyan darken-2" (click)="regresar()">
+                                <i class="material-icons left mr-1">arrow_back</i>
+                                Regresar
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mensaje sin info de registros -->
+<div *ngIf="registroActividades" class="text-center">
+    <div *ngIf="registroActividades.length == 0">
+        <span class="info-text">No hay registros de actividades asociados a este paciente.</span>
+    </div>
+</div>
+
+<!-- Cargando... -->
+<div *ngIf="!registroActividades" class="text-center info-text">
+
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <p>Cargando...</p>
+
+</div>

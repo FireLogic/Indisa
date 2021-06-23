@@ -1,0 +1,56 @@
+<div class="m-2">
+
+    <div class="card m-2">
+        <span class="title-text ml-4">Actividad 7 - Cuarto excluido</span>
+    </div>
+
+    <div class="card m-2" *ngIf="imagenes">
+
+        <div class="card-content" *ngIf="!finActividad">
+
+            <div class="info-text m-2">
+                • Observe las 4 láminas y seleccione aquella que se diferencie de los demás presentados.
+            </div>
+
+            <span class="time-text ml-4">Tiempo: {{ display }}</span>
+
+            <div class="row">
+
+                <div class="col-12 col-lg-6 input-position text-right mb-4" *ngFor="let card of cards">
+                    <div class="image-card card transparent" (click)="selectCard(card)">
+                        <img src="{{card.urlImg}}" height="250px" width="auto" oncontextmenu='return false;'>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-content" *ngIf="finActividad">
+
+            <div class="row">
+                <div class="col-12 info-text m-1">
+                    <span class="m-3 font-weight-bold">Resumen de la actividad</span>
+                    <p class="m-3">• Cantidad de rondas: {{ cantRondas }}</p>
+                    <p class="m-3">• Cantidad de imágenes: {{ imagenes_original.length }}</p>
+                    <p class="m-3">• Duración de la actividad: {{ duracionActividad }} segundos.</p>
+                    <span class="m-3 font-weight-bold">Puede incluir a continuación una observación de esta
+                        actividad:</span>
+                    &nbsp;
+                    <div class="m-3 input-field">
+                        <textarea id="textarea1" [formControl]="observacionForm"
+                            class="materialize-textarea"></textarea>
+                        <label for="textarea1">Observación final</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="text-right mt-1 mr-2">
+                <button type="button" class="btn cyan darken-2" (click)="registrarActividad()">Guardar registro</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

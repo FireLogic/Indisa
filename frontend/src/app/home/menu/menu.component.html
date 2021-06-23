@@ -1,0 +1,60 @@
+<ng-container>
+
+    <!-- Toolbar -->
+    <mat-toolbar color="warn" class="example-header">
+        <mat-toolbar-row>
+
+            <em class="small material-icons menu-icon" (click)="sidenav.toggle()">menu</em>
+            <h5 class="col mr-4" style="cursor: default;">Actividades Fonoaudiológicas</h5>
+
+            <span class="col info-user text-right ml-4" *ngIf="usuario && opened">
+                <!-- <em class="tiny material-icons menu-icon" style="font-size: 15px;">person</em> -->
+                <span class="mr-1" style="font-size: 14px; cursor: default;">👤</span>
+                <span style="cursor: pointer;" (click)="goPerfil()" title="Ver Perfil">
+                    {{ usuario.nombre }}
+                </span>
+            </span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <!-- Sidenav -->
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav mode="{{mode}}" [opened]="opened" class="example-sidenav"
+            [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
+            [fixedBottomGap]="options.value.bottom">
+            <mat-nav-list>
+                <a mat-list-item class="menu-text" (click)="goDashboard()" *ngIf="permisoDashboard">
+                    <em class="small material-icons mr-2">dashboard</em>
+                    Dashboard</a>
+                <a mat-list-item class="menu-text" (click)="goPacientes()" *ngIf="permisoPacientes">
+                    <em class="small material-icons mr-2">people</em>
+                    Pacientes</a>
+                <a mat-list-item class="menu-text" (click)="goActividades()" *ngIf="permisoActividades">
+                    <em class="small material-icons mr-2">assignment_turned_in</em>
+                    Actividades</a>
+                <a mat-list-item class="menu-text" (click)="goImagenes()" *ngIf="permisoImagenes">
+                    <em class="small material-icons mr-2">image</em>
+                    Imágenes</a>
+                <a mat-list-item class="menu-text" (click)="goAjustes()" *ngIf="permisoAjustes">
+                    <em class="small material-icons mr-2">settings</em>
+                    Ajustes</a>
+                <a mat-list-item class="menu-text" (click)="signOut()">
+                    <em class="small material-icons mr-2">power_settings_new</em>
+                    Salir</a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <!-- Contenido -->
+        <mat-sidenav-content>
+            <!-- Spinner -->
+            <ngx-spinner bdColor="rgba(255,255,255,0.1)" size="medium" color="#424242" type="ball-spin-clockwise"
+                [fullScreen]="false">
+                <p style="color: #7f7f7f"> Cargando... </p>
+            </ngx-spinner>
+            <!-- Aquí se cargan los componentes -->
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</ng-container>

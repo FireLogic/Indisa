@@ -1,0 +1,144 @@
+<div *ngIf="paciente">
+    <div class="row">
+        <h5 class="col-11" mat-dialog-title>Edición de la ficha del Paciente</h5>
+        <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+    </div>
+    <div mat-dialog-content>
+        <div class="card-body">
+            <!-- Editar info del paciente -->
+            <div class="info-text form-row" [formGroup]="pacienteGroup">
+
+                <div class="col-sm-6 col-12">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" formControlName="nombre" [(ngModel)]="paciente.nombre">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>RUT</label>
+                    <input type="text" name="rut" formControlName="rut" [(ngModel)]="paciente.rut">
+                </div>
+
+                <div class="col-sm-6 col-12 input-field mt-3">
+                    <div class="m-0" style="font-size: small;">Fecha de nacimiento</div>
+                    <input type="date" name="fecha_nacimiento" formControlName="fecha_nacimiento"
+                        [ngModel]="paciente.fecha_nacimiento | date:'yyyy-MM-dd'">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" formControlName="direccion" [(ngModel)]="paciente.direccion">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Teléfono Fijo</label>
+                    <input type="text" name="tel_fijo" min="5" pattern="^[0-9]*" formControlName="tel_fijo"
+                        [(ngModel)]="paciente.tel_fijo">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Teléfono Celular</label>
+                    <input type="text" name="tel_celular" min="9" pattern="[+0-9]*" formControlName="tel_celular"
+                        [(ngModel)]="paciente.tel_celular">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Correo Electrónico</label>
+                    <input type="text" name="correo" formControlName="correo" [(ngModel)]="paciente.correo">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Escolaridad</label>
+                    <input type="text" name="escolaridad" formControlName="escolaridad"
+                        [(ngModel)]="paciente.escolaridad">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Ocupación</label>
+                    <input type="text" name="ocupacion" formControlName="ocupacion" [(ngModel)]="paciente.ocupacion">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Diagnóstico</label>
+                    <input type="text" name="diagnostico" formControlName="diagnostico"
+                        [(ngModel)]="paciente.diagnostico">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Días en hospital</label>
+                    <input type="number" min="0" name="dias_hospital" formControlName="dias_hospital"
+                        [(ngModel)]="paciente.dias_hospital">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Exámenes realizados</label>
+                    <input type="text" name="examenes_realizados" formControlName="examenes_realizados"
+                        [(ngModel)]="paciente.examenes_realizados">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Historial clínica</label>
+                    <input type="text" name="historico_clinica" formControlName="historico_clinica"
+                        [(ngModel)]="paciente.historico_clinica">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Nombre del familiar a cargo</label>
+                    <input type="text" name="familiar_nombre" formControlName="familiar_nombre"
+                        [(ngModel)]="paciente.familiar_nombre">
+                </div>
+
+                <div class="col-sm-6 col-12">
+                    <label>Parentesco del familiar a cargo</label>
+                    <input type="text" name="familiar_parentesco" formControlName="familiar_parentesco"
+                        [(ngModel)]="paciente.familiar_parentesco">
+                </div>
+
+
+                <mat-form-field class="col-sm-6 col-12 input-field pb-4">
+                    <mat-label class="pb-4">Responsable(s)</mat-label>
+                    <mat-select formControlName="responsables" [(ngModel)]="paciente.responsables" multiple>
+                        <mat-optgroup *ngFor="let usuario of usuarios" [label]="usuario.perfil">
+                            <mat-option *ngFor="let value of usuario.usuarios" [value]="value.auth_id">
+                                {{ value.nombre }}
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <!-- Botón de registro -->
+                <div class="container col-12 mt-2">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="pacienteGroup">
+                            <button type="button" [disabled]="pacienteGroup.pristine" class="btn cyan darken-2 ml-2"
+                                type="submit" name="action" (click)="updatePaciente()">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cargando... -->
+<div *ngIf="!paciente" class="text-center info-text">
+
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <p>Cargando...</p>
+
+</div>

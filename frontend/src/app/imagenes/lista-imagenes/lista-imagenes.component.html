@@ -1,0 +1,64 @@
+<div class="m-2" *ngIf="imagenes">
+
+    <!-- Título -->
+    <div class="card m-2">
+        <span class="title-text ml-4">Lista de Imágenes</span>
+    </div>
+
+    <div class="row card m-2">
+
+        <div class="col-12 col-lg-12 card-content">
+
+            <!-- Tabla con lista de imágenes -->
+            <table class="info-text" *ngIf="imagenes && imagenes.length>0">
+                <thead class="font-weight-bold">
+                    <th class="sort-column" (click)="sortImgNombre()"><i class="material-icons tiny mr-1">sort</i>
+                        Nombre
+                    </th>
+                    <th class="sort-column" (click)="sortImgCat()"><i class="material-icons tiny mr-1">sort</i>
+                        Categoría
+                    </th>
+                    <th class="sort-column" (click)="sortImgSubCat()"><i class="material-icons tiny mr-1">sort</i>
+                        Sub-Categoría
+                    </th>
+                    <th class="text-right"><i class="material-icons tiny mr-1">settings</i>Gestión Imágenes</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let imagen of imagenes">
+                        <td>{{ imagen.nombre }}</td>
+                        <td>{{ imagen.categoria }}</td>
+                        <td>{{ imagen.subcategoria }}</td>
+                        <td class="text-right">
+                            <a (click)="verImagen(imagen._id)" title="Ver Imagen">
+                                <i class="material-icons mr-3" style="cursor: pointer">image</i>
+                            </a>
+                            <a (click)="editImagen(imagen._id)" title="Editar">
+                                <i class="material-icons mr-3" style="cursor: pointer">edit</i>
+                            </a>
+                            <a (click)="deleteImagen(imagen._id)" title="Eliminar">
+                                <i class="material-icons mr-3" style="cursor: pointer">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Mensaje sin info -->
+            <div class="info-text text-center m-2" *ngIf="imagenes && imagenes.length==0">
+                <p class="mb-2" style="font-style: oblique">No se encontraron imágenes registradas.</p>
+                <p>Presione el botón <b>Nueva Imagen</b> para registrar una nueva imagen.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Botón de registro -->
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <button type="button" class="btn cyan darken-2 ml-2" (click)="subirImagen()">
+                <i class="material-icons left mr-1">add_box</i>
+                Nueva Imagen
+            </button>
+        </div>
+        <div class="m-4">&nbsp;</div>
+    </div>
+
+</div>

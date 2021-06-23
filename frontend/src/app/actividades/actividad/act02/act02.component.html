@@ -1,0 +1,121 @@
+<div class="m-2" *ngIf="actividad">
+
+    <!-- Título de la actividad -->
+    <div class="card m-2">
+        <span class="title-text ml-4">{{ actividad.nombre }}</span>
+    </div>
+
+    <div class="info-text row card m-2">
+        <div class="col-12 card-content m-2">
+            <!-- Formulario para comenzar actividad -->
+            <form [formGroup]="actividadGroup">
+                <!-- Resumen de la actividad -->
+                <div class="col-12 ml-4">
+                    <i class="material-icons tiny mt-1 mr-2">assignment_turned_in</i>
+                    <span class="font-weight-bold mb-3">Resumen de la actividad</span>
+                    <p class="m-1">• Tipo: {{ actividad.tipo }}</p>
+                    <p class="m-1">• Dificultad: {{ actividad.dificultad }}</p>
+                    <p class="m-1">• Descripción: {{ actividad.descripcion }}</p>
+                </div>
+
+                <div>&nbsp;</div>
+
+                <!-- Seleccionar paciente a realizar actividad -->
+                <div class="col-12 ml-4 font-weight-bold">
+                    <i class="material-icons tiny mt-1 mr-2">person</i>
+                    Seleccionar paciente
+                </div>
+
+                <div class="col-12 ml-4 mt-3 mb-0">
+                    <span>Selecciona el paciente que realizará esta actividad.</span>
+                </div>
+
+                <div class="col-12 ml-4 input-field">
+                    <mat-form-field>
+                        <mat-label>Seleccionar Paciente</mat-label>
+                        <mat-select name="paciente" formControlName="pacienteForm">
+                            <mat-option *ngFor="let paciente of pacientes" [value]="paciente._id">
+                                {{paciente.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!-- Personalizar actividad -->
+                <div class="col-12 ml-4 font-weight-bold">
+                    <i class="material-icons tiny mt-1 mr-2">build</i>
+                    Personalizar actividad
+                </div>
+
+                <div class="col-12 ml-4 mt-3 mb-0">
+                    <span>Filtra y selecciona las imágenes que se utilizarán para esta actividad.</span>
+                </div>
+
+                <!-- Filtrar por categorías -->
+                <div class="col-12 ml-4 input-field">
+                    <mat-form-field>
+                        <mat-label>Seleccionar Categoría(s)</mat-label>
+                        <mat-select name="categorias" formControlName="categoriasForm" multiple>
+                            <mat-option (click)="filtroCategorias()" *ngFor="let categoria of categorias"
+                                [value]="categoria">
+                                {{ categoria.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!-- Filtrar por sub-categorías -->
+                <div class="col-12 l4 ml-4 input-field">
+                    <mat-form-field>
+                        <mat-label>Seleccionar Sub-Categoría(s)</mat-label>
+                        <mat-select name="subcategorias" formControlName="subcategoriasForm" multiple>
+                            <mat-option (click)="filtroSubcategorias()" *ngFor="let subcategoria of subcategorias"
+                                [value]="subcategoria">
+                                {{ subcategoria }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!-- Seleccionar imágenes -->
+                <div class="col-12 l4 ml-4 input-field">
+                    <mat-form-field>
+                        <mat-label>Seleccionar Imágenes</mat-label>
+                        <mat-select name="imagenes" formControlName="imagenesForm" multiple>
+                            <mat-option *ngFor="let imagen of imagenesList" [value]="imagen">
+                                {{ imagen.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+
+                    <!-- Botón para comenzar actividad -->
+                    <div class="col-lg-3 col-12 text-left m-1">
+                        <form novalidate [formGroup]="actividadGroup">
+                            <button type="button" [disabled]="actividadGroup.invalid" class="btn cyan darken-2"
+                                type="submit" name="action" (click)="goActividad()">Comenzar Actividad</button>
+                        </form>
+
+                    </div>
+
+                    <!-- Botón para enviar actividad como tarea -->
+
+                    <div class="col-lg col-12 text-left m-1">
+                        <form novalidate [formGroup]="actividadGroup">
+                            <button type="button" [disabled]="actividadGroup.invalid" class="btn cyan darken-2"
+                                (click)="enviarTarea()">
+                                Enviar Actividad
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+        <div>&nbsp;</div>
+    </div>
+</div>

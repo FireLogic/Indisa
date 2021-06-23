@@ -1,0 +1,66 @@
+<div *ngIf="usuario">
+    <div class="row">
+        <h5 class="col-11" mat-dialog-title>Edición de datos del usuario</h5>
+        <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+    </div>
+    <div mat-dialog-content>
+        <div class="card-body">
+            <!-- Editar info del usuario -->
+            <div class="info-text form-row" [formGroup]="usuarioGroup">
+
+
+                <mat-form-field class="col-12 m-0">
+                    <mat-label>Tipo de Perfil</mat-label>
+                    <mat-select formControlName="perfil" [(ngModel)]="usuario.perfil">
+                        <mat-option *ngFor="let perfil of perfiles" [value]="perfil.value">
+                            {{ perfil.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="col-12">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" formControlName="nombre" [(ngModel)]="usuario.nombre">
+                </div>
+
+                <div class="col-12 mt-3 mb-3">
+                    <div>Correo electrónico</div>
+                    <div class="font-weight-bold">{{ usuario.correo }}</div>
+                </div>
+
+                <!-- Botón de registro -->
+                <div class="container col-12 mt-2">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="usuarioGroup">
+                            <button type="button" [disabled]="usuarioGroup.pristine" class="btn cyan darken-2 ml-2"
+                                type="submit" name="action" (click)="updateUsuario()">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cargando... -->
+<div *ngIf="!usuario" class="text-center info-text">
+
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <p>Cargando...</p>
+
+</div>

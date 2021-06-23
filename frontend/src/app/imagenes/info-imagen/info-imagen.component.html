@@ -1,0 +1,46 @@
+<div *ngIf="imagen">
+    <div class="row">
+        <h5 class="col-11" mat-dialog-title>Información de la Imagen</h5>
+        <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+    </div>
+    <div mat-dialog-content>
+        <div class="card-body">
+            <!-- Imagen info -->
+            <div class="info-text row">
+
+                <div class="col-12 m-1">
+                    <b>Nombre:</b> {{imagen.nombre}}
+                </div>
+                <div class="col-12 m-1">
+                    <b>Número de sílabas:</b> {{imagen.silabas}}
+                </div>
+                <div class="col-12 m-1">
+                    <b>Definición:</b> {{imagen.definicion}}
+                </div>
+                <div class="col-12 m-1">
+                    <b>Categoría:</b> {{imagen.categoria}}
+                </div>
+                <div class="col-12 m-1">
+                    <b>Sub-Categoría:</b> {{imagen.subcategoria}}
+                </div>
+                <div class="col-12 m-1" *ngIf="imagen.fonema">
+                    <b>Fonema:</b> {{imagen.fonema}}
+                </div>
+                <div class="col-12 m-1" *ngIf="imagen.difono[0]">
+                    <b>Difono:</b> {{imagen.difono}}
+                </div>
+                <div class="col-12 text-center">
+                    <img [src]=imagen.urlImg height="250" width="300">
+                </div>
+                <div class="col-12 mt-1 text-center">
+                    <button title="Reproducir audio" type="button" class="btn btn-largue orange darken-3 ml-2"
+                        (click)="playAudio()">
+                        <i class="material-icons center">play_circle_outline</i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

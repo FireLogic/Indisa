@@ -17,7 +17,8 @@ imagenCtrl.createImagen = async (req, res) => {
         difono: req.body.difono,
         urlImg: req.body.urlImg,
         urlAudio: req.body.urlAudio,
-        definicion: req.body.definicion
+        definicion: req.body.definicion,
+        verbo: req.body.verbo
     });
     await imagen.save();
     res.json({
@@ -41,6 +42,14 @@ imagenCtrl.getImagenBySubCat = async (req, res) => {
 };
 
 
+
+ imagenCtrl.getImagenByVer = async (req, res) => {
+    const imagen = await Imagen.find().where('verbo').equals(req.params.verbo)
+    res.json(imagen);
+};
+
+
+
 imagenCtrl.editImagen = async (req, res) => {
     const { id } = req.params;
     const imagen = {
@@ -52,7 +61,8 @@ imagenCtrl.editImagen = async (req, res) => {
         difono: req.body.difono,
         urlImg: req.body.urlImg,
         urlAudio: req.body.urlAudio,
-        definicion: req.body.definicion
+        definicion: req.body.definicion,
+        verbo: req.body.verbo
     };
     await Imagen.findByIdAndUpdate(id, { $set: imagen }, { new: true });
     res.json({ status: 'Imagen actualizada' });

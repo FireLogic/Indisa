@@ -1,0 +1,41 @@
+<div class="m-2" *ngIf="verbos">
+
+    <div class="card m-2">
+        <span class="title-text ml-4">Gestión de Verbos</span>
+    </div>
+
+    <div class="info-text row card m-2">
+        
+        <div class="col-12 card-content">
+            <table>
+                <thead class="font-weight-bold">
+                    <th>Nombre</th>
+                </thead>            
+                <tbody>
+                    <tr *ngFor="let verbo of verbos">
+                        <td class="text-left">{{ verbo.nombre }}</td>
+                        <td class="text-right">
+                            <a (click)="editarVerbo(verbo._id)" title="Editar">
+                                <i class="material-icons ml-4" style="cursor: pointer">edit</i>
+                            </a>
+                            <a (click)="eliminarVerbo(verbo)" title="Eliminar">
+                                <i class="material-icons ml-4" style="cursor: pointer">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>      
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn cyan darken-2 ml-2" (click)="crearVerbo()">
+                <i class="material-icons left mr-1">add_box</i>
+                Nuevo Verbo
+            </button>
+        </div>
+        <div class="m-4">&nbsp;</div>
+    </div>
+</div>
+
+    

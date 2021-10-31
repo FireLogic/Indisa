@@ -10,7 +10,8 @@ const ImagenSchema = new Schema({
     difono: { type: Array, required: false },
     urlImg: { type: String, required: true },
     urlAudio: { type: String, required: true },
-    definicion: { type: String, required: true }
+    definicion: { type: String, required: true },
+    verbo: {type: String, required : false}
 });
 
 module.exports = mongoose.model('Imagen', ImagenSchema);

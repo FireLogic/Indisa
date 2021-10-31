@@ -62,7 +62,18 @@ export class ListaActividadesComponent implements OnInit {
     card: 'blue-grey lighten-1',
     btn: 'blue-grey darken-1'
   },
-
+  {
+    card: 'cyan darken-2',
+    btn: 'cyan darken-4'
+  },
+  {
+    card: 'amber darken-2',
+    btn: 'amber darken-4' 
+  },
+  {
+    card: 'light-green',
+    btn: 'light-green darken-3'
+  }
   ];
 
   // Ruta para cada actividad
@@ -95,6 +106,18 @@ export class ListaActividadesComponent implements OnInit {
       nombre: 'Actividad 7',
       ruta: 'actividades/actividad-07-play',
     },
+    {
+      nombre: 'Actividad 8',
+      ruta: 'actividades/actividad-08-play'
+    },
+    {
+      nombre: 'Actividad 9',
+      ruta: 'actividades/actividad-09-play'
+    },
+    {
+      nombre: 'Actividad 10',
+      ruta: 'actividades/actividad-10-play'
+    }
   ]
 
 

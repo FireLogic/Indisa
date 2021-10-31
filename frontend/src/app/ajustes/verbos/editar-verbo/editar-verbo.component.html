@@ -1,0 +1,64 @@
+<div *ngIf="verbo">
+    <div class="row">
+        <h5 class="col-10" mat-dialog-title>Edición de el Verbo</h5>
+        <i class="material-icons col text-right" style="cursor: pointer;" (click)="onNoClick()">clear</i>
+    </div>
+    <div mat-dialog-content>
+        <div class="card-body">
+            <div class="info-text form-row" [formGroup]="verboGroup">
+
+                <div class="col-6 mb-4">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" [(ngModel)]="verbo.nombre" formControlName="nombre"
+                        placeholder="Nombre">
+                </div>
+                <!--
+                <mat-form-field class="col-12 example-chip-list">
+                    <mat-chip-list #chipList aria-label="Subcategoria selection">
+                        <mat-chip *ngFor="let subcategoria of subcategorias" [selectable]="selectable"
+                            [removable]="removable" (removed)="remove(subcategoria)">
+                            {{ subcategoria }}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Agrega subcategorías..." [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                </mat-form-field>
+                -->
+
+
+                <div class="container col-12 mt-2">
+                    <div mat-dialog-actions class="row">
+                        <button type="button" class="btn cyan darken-2" (click)="onNoClick()">Cancelar</button>
+                        <form novalidate [formGroup]="verboGroup">
+                            <button type="button" class="btn cyan darken-2 ml-2" type="submit" name="action"
+                                (click)="editarVerbo()">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!verbo" class="text-center">
+
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <p>Cargando...</p>
+
+</div>

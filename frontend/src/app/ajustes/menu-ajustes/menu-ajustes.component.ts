@@ -12,6 +12,7 @@ export class MenuAjustesComponent implements OnInit {
   permisoPerfil = false;
   permisoCategorias = false;
   permisoUsuarios = false;
+  permisoVerbos = false;
 
   constructor(private router: Router) { }
 
@@ -39,6 +40,8 @@ export class MenuAjustesComponent implements OnInit {
 
       (permiso == Constantes.usuarios) ? this.permisoUsuarios = true : this.permisoUsuarios;
 
+      (permiso == Constantes.verbos) ? this.permisoVerbos = true : this.permisoVerbos;
+
     });
 
   }
@@ -54,5 +57,10 @@ export class MenuAjustesComponent implements OnInit {
   goUsuarios() {
     this.router.navigate(['ajustes/usuarios'], { skipLocationChange: false });
   }
+  
+  goVerbos(){
+    this.router.navigate(['ajustes/verbos'], {skipLocationChange: false});
+  } 
+   
 
 }

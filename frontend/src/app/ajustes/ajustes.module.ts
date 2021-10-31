@@ -14,11 +14,14 @@ import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.co
 import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
 import { InfoUsuarioComponent } from './usuarios/info-usuario/info-usuario.component';
 
+import { VerbosComponent } from './verbos/verbos.component';
+import { CrearVerboComponent } from './verbos/crear-verbo/crear-verbo.component';
+import { EditarVerboComponent } from './verbos/editar-verbo/editar-verbo.component';
 
 @NgModule({
   declarations: [MenuAjustesComponent, CategoriasComponent, CrearCategoriaComponent, EditarCategoriaComponent,
     PerfilComponent, UsuariosComponent, InfoUsuarioComponent, CrearUsuarioComponent,
-    EditarUsuarioComponent,],
+    EditarUsuarioComponent, VerbosComponent, CrearVerboComponent, EditarVerboComponent],
   imports: [
     CommonModule,
     AjustesRoutingModule,

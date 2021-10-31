@@ -1,6 +1,8 @@
+import { Verbo } from "./verbo";
+
 export class Imagen {
 
-    constructor(_id = '', nombre = '', silabas = '', categoria = '', subcategoria = '', fonema = '', difono = [], urlImg = '', urlAudio = '', definicion = '') {
+    constructor(_id = '', nombre = '', silabas = '', categoria = '', subcategoria = '', fonema = '', difono = [], urlImg = '', urlAudio = '', definicion = '', verbo = "") {
         this._id = _id;
         this.nombre = nombre;
         this.silabas = silabas;
@@ -11,6 +13,7 @@ export class Imagen {
         this.urlImg = urlImg;
         this.urlAudio = urlAudio;
         this.definicion = definicion;
+        this.verbo = verbo;
     }
 
     _id: string;
@@ -23,4 +26,5 @@ export class Imagen {
     urlImg: string;
     urlAudio: string;
     definicion: string;
+    verbo: string;
 }

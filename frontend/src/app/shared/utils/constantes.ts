@@ -18,4 +18,5 @@ export class Constantes {
     public static categorias = 'categorias';
     public static perfil = 'perfil';
     public static usuarios = 'usuarios';
+    public static verbos = 'verbos';
 }

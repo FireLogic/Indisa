@@ -9,6 +9,7 @@ import { ListaImagenesComponent } from '../imagenes/lista-imagenes/lista-imagene
 import { MenuAjustesComponent } from '../ajustes/menu-ajustes/menu-ajustes.component';
 import { AuthGuard } from '../shared/guard/auth.guard';
 import { CategoriasComponent } from '../ajustes/categorias/categorias.component';
+import { VerbosComponent} from '../ajustes/verbos/verbos.component';  
 import { PerfilComponent } from '../ajustes/perfil/perfil.component';
 import { Act01Component } from '../actividades/actividad/act01/act01.component';
 import { GoAct01Component } from '../actividades/actividad/act01/go-act01/go-act01.component';
@@ -57,6 +58,7 @@ const routes: Routes = [
       { path: 'ajustes/perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { permiso: Constantes.perfil } },
       { path: 'ajustes/categorias', component: CategoriasComponent, canActivate: [AuthGuard], data: { permiso: Constantes.categorias } },
       { path: 'ajustes/usuarios', component: UsuariosComponent, canActivate: [AuthGuard], data: { permiso: Constantes.usuarios } },
+      { path: 'ajustes/verbos', component: VerbosComponent, canActivate: [AuthGuard], data: {permiso: Constantes.verbos} },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }

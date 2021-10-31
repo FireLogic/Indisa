@@ -16,6 +16,7 @@
                         <div class="card-content white-text text-center">
                             <!-- Info de la actividad -->
                             <span class="font-weight-bold card-title"> {{actividad.nombre}} </span>
+                            <p> {{actividad.nombre_act}}</p> 
                             <p>Ejercicio: {{actividad.tipo}}</p>
                             <p>Dificultad: {{actividad.dificultad}}</p>
                             <!-- Botón para ir a la actividad -->
@@ -42,6 +43,7 @@
                             <div class="card">
                                 <div class="card-content info-text">
                                     <p><b>{{tarea.actividad.nombre}}</b></p>
+                                    <p> {{actividad.nombre_act}}</p>
                                     <p>Paciente: {{tarea.paciente.nombre}}</p>
                                     <p>Fecha de envío: {{tarea.tarea.fecha_envio | date: 'dd/MM/yyyy' }}</p>
 

@@ -28,6 +28,13 @@
                             <span class="info-text" (click)="goUsuarios()">Gestión de Usuarios</span>
                         </td>
                     </tr>
+                    <!--FUTURA GESTION DE VERBOS-->
+                    <tr *ngIf="permisoVerbos">
+                        <td>
+                            <i class="material-icons tiny mr-2">font_download</i>
+                            <span class="info-text" (click)="goVerbos()">Gestión de Verbos</span>
+                        </td>
+                    </tr> 
                 </tbody>
             </table>
 

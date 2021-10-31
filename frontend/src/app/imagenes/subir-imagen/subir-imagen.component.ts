@@ -13,6 +13,11 @@ import { Categoria } from 'src/app/models/categoria';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
 import { CrearCategoriaComponent } from 'src/app/ajustes/categorias/crear-categoria/crear-categoria.component';
 
+import { Verbo } from 'src/app/models/verbo';
+import { VerboService } from 'src/app/shared/services/verbo.service';
+import { CrearVerboComponent } from 'src/app/ajustes/verbos/crear-verbo/crear-verbo.component';
+
+
 declare var M: any;
 
 @Component({
@@ -25,6 +30,7 @@ export class SubirImagenComponent implements OnInit {
   imagen: Imagen;
   categorias: Categoria[];
   subcategorias;
+  verbos : Verbo[];
 
   filePathImg; fileImg; fileNameImg; urlImg;
   filePathAudio; fileAudio; fileNameAudio; urlAudio;
@@ -81,6 +87,7 @@ export class SubirImagenComponent implements OnInit {
       Validators.max(10),
     ]),
     categoria: new FormControl('', [Validators.required]),
+    verbo: new FormControl('', [Validators.required]),
     subcategoria: new FormControl('', [Validators.required]),
     fonema: new FormControl(''),
     difono: new FormControl(''),
@@ -90,6 +97,7 @@ export class SubirImagenComponent implements OnInit {
   })
 
   constructor(private readonly categoriasService: CategoriaService,
+    private readonly verbosService: VerboService,
     private spinner: NgxSpinnerService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<SubirImagenComponent>,
@@ -97,6 +105,7 @@ export class SubirImagenComponent implements OnInit {
 
   ngOnInit() {
     this.getCategorias();
+    this.getVerbos();
   }
 
   showSpinner() {
@@ -110,6 +119,15 @@ export class SubirImagenComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  
+  getVerbos(){
+    this.verbosService.getVerbos()
+    .subscribe(res => {
+      this.verbosService.verbos = res as Verbo[];
+      this.verbos = this.verbosService.verbos;
+    })
+  }
+
 
   getCategorias() {
     this.categoriasService.getCategorias()
@@ -176,8 +194,25 @@ export class SubirImagenComponent implements OnInit {
           })
       }
     });
-
   }
 
+  addVerbo() {
+
+    const dialogRef = this.dialog.open(CrearVerboComponent, {
+      width: '500px',
+      data: '',
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.verbosService.postVerbo(res)
+          .subscribe(res => {
+            this.hideSpinner();
+            M.toast({ html: 'Verbo registrado exitosamente!' })
+            this.getCategorias();
+          })
+      }
+    });
+  }
 
 }

@@ -20,6 +20,7 @@ app.use('/api/categorias', require('./routes/categoria.routes'));
 app.use('/api/registro-actividad', require('./routes/registro_actividad.routes'));
 app.use('/api/usuarios', require('./routes/usuario.routes'));
 app.use('/api/tareas', require('./routes/tarea.routes'));
+app.use('/api/verbos', require('./routes/verbo.routes'));
 
 // Starting the server
 app.listen(app.get('port'), () => {

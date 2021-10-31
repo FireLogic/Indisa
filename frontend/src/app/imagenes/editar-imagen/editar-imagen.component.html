@@ -85,6 +85,23 @@
                     <img [src]=imagen.urlImg height="150" width="185">
                 </div>
 
+                <div class=" col-sm-6 col-12 input-field">
+                    <mat-form-field>
+                        <mat-label>Verbo</mat-label>
+                        <mat-select name="verbo" formControlName="verbo" [(ngModel)]="imagen.verbo">
+                            <mat-option (click)="getVerbo(verbo)" *ngFor="let verbo of verbos"
+                                [value]="verbo.nombre">
+                                {{ verbo.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <a title="Añadir Verbo"
+                        class="btn-floating btn-small waves-effect waves-light cyan darken-2 ml-2"
+                        (click)="addVerbo()">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+
                 <div class="col-sm-6 col-12 mt-4">
                     <i class="material-icons tiny mr-1">image</i>
                     <mat-label>Elegir una nueva imagen (jpg o png)</mat-label>

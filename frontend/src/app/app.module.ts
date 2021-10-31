@@ -29,6 +29,8 @@ import { AjustesModule } from './ajustes/ajustes.module';
 import { EditarCategoriaComponent } from './ajustes/categorias/editar-categoria/editar-categoria.component';
 import { AuthService } from "./shared/services/auth.service";
 
+import { EditarVerboComponent } from './ajustes/verbos/editar-verbo/editar-verbo.component';
+import { CrearVerboComponent } from './ajustes/verbos/crear-verbo/crear-verbo.component';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
@@ -66,7 +68,7 @@ import { ActividadesModule } from './actividades/actividades.module';
   entryComponents: [SubirImagenComponent, EditarImagenComponent, EliminarImagenComponent,
     CrearPacienteComponent, InfoPacienteComponent, RegistroActividadesComponent,
     EditarPacienteComponent, EliminarPacienteComponent, VentanaInfoComponent,
-    CrearCategoriaComponent, EditarCategoriaComponent],
+    CrearCategoriaComponent, EditarCategoriaComponent, CrearVerboComponent, EditarVerboComponent],
   providers: [AngularFireStorage, AuthService],
 
   bootstrap: [AppComponent]

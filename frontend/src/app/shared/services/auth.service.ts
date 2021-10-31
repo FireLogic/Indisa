@@ -129,13 +129,13 @@ export class AuthService {
       permisos = [Constantes.menuDashboard, Constantes.dashboardPro, Constantes.menuPacientes,
       Constantes.pacientesPro, Constantes.pacientesEdit, Constantes.menuActividades,
       Constantes.actividadesPro, Constantes.menuImagenes, Constantes.imagenes, Constantes.menuAjustes,
-      Constantes.perfil, Constantes.categorias, Constantes.usuarios, Constantes.actividadesPlay];
+      Constantes.perfil, Constantes.categorias, Constantes.usuarios, Constantes.actividadesPlay, Constantes.verbos];
     }
     else if (perfil == 'profesional') {
       permisos = [Constantes.menuDashboard, Constantes.dashboardPro, Constantes.menuPacientes,
       Constantes.pacientesBasic, Constantes.pacientesEdit, Constantes.menuActividades,
       Constantes.actividadesPro, Constantes.menuImagenes, Constantes.imagenes, Constantes.menuAjustes,
-      Constantes.perfil, Constantes.categorias, Constantes.actividadesPlay];
+      Constantes.perfil, Constantes.categorias, Constantes.actividadesPlay, Constantes.verbos];
     }
     else if (perfil == 'supervisor') {
       permisos = [Constantes.menuDashboard, Constantes.dashboardBasic, Constantes.menuPacientes,

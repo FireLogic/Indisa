@@ -39,6 +39,23 @@
                         <i class="material-icons">add</i>
                     </a>
                 </div>
+                <!-- AGREGAR VERBO -->
+                <div class=" col-6 input-field">
+                    <mat-form-field>
+                        <mat-label>Verbo</mat-label>
+                        <mat-select name="verbo" formControlName="verbo">
+                            <mat-option (click)="getVerbo(verbo)" *ngFor="let verbo of verbos"
+                                [value]="verbo.nombre">
+                                {{ verbo.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <a title="Añadir Verbo"
+                        class="btn-floating btn-small waves-effect waves-light cyan darken-2 ml-2"
+                        (click)="addVerbo()">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
 
                 <div class="col-6 input-field">
                     <mat-form-field>

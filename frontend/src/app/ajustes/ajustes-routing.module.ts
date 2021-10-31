@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MenuAjustesComponent } from './menu-ajustes/menu-ajustes.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { VerbosComponent } from './verbos/verbos.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AuthGuard } from '../shared/guard/auth.guard';
 
@@ -9,7 +10,8 @@ import { AuthGuard } from '../shared/guard/auth.guard';
 const routes: Routes = [
   { path: '', component: MenuAjustesComponent, canActivate: [AuthGuard] },
   { path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard] },
-  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] }
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
+  { path: 'verbos', component: VerbosComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

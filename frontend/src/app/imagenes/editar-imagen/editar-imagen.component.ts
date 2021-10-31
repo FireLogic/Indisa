@@ -8,6 +8,10 @@ import { CategoriaService } from 'src/app/shared/services/categoria.service';
 import { Categoria } from 'src/app/models/categoria';
 import { CrearCategoriaComponent } from 'src/app/ajustes/categorias/crear-categoria/crear-categoria.component';
 
+import { VerboService } from 'src/app/shared/services/verbo.service';
+import { Verbo } from 'src/app/models/verbo';
+import { CrearVerboComponent } from 'src/app/ajustes/verbos/crear-verbo/crear-verbo.component';
+
 declare var M: any;
 
 @Component({
@@ -20,6 +24,7 @@ export class EditarImagenComponent implements OnInit {
   imagen: Imagen;
   categorias: Categoria[];
   subcategorias;
+  verbos : Verbo[];
 
   filePathImg; fileImg; fileNameImg; urlImg;
   filePathAudio; fileAudio; fileNameAudio; urlAudio;
@@ -28,6 +33,7 @@ export class EditarImagenComponent implements OnInit {
 
   hayImagen = false;
   hayCategorias = false;
+  hayVerbos = false;
 
 
   fonemas = [
@@ -81,11 +87,13 @@ export class EditarImagenComponent implements OnInit {
     difono: new FormControl(''),
     urlImg: new FormControl(''),
     urlAudio: new FormControl(''),
-    definicion: new FormControl('', [Validators.required])
+    definicion: new FormControl('', [Validators.required]),
+    verbo: new FormControl('', [Validators.required])
   })
 
   constructor(private readonly imagenService: ImagenService,
     private readonly categoriaService: CategoriaService,
+    private readonly verboService: VerboService,
     private spinner: NgxSpinnerService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<EditarImagenComponent>,
@@ -96,6 +104,7 @@ export class EditarImagenComponent implements OnInit {
     this.imagen = new Imagen();
     this.getImagen(this.data)
     this.getCategorias();
+    this.getVerbos();
   }
 
   showSpinner() {
@@ -140,6 +149,15 @@ export class EditarImagenComponent implements OnInit {
         this.categorias = this.categoriaService.categorias;
         this.hayCategorias = true;
         this.cargarSubcategorias();
+      });
+  }
+
+  getVerbos() {
+    this.verboService.getVerbos()
+      .subscribe(res => {
+        this.verboService.verbos = res as Verbo[];
+        this.verbos = this.verboService.verbos;
+        this.hayVerbos = true;
       });
   }
 
@@ -213,6 +231,26 @@ export class EditarImagenComponent implements OnInit {
             this.hideSpinner();
             M.toast({ html: 'Categoría registrada exitosamente!' })
             this.getCategorias();
+          })
+      }
+    });
+
+  }
+
+  addVerbo() {
+
+    const dialogRef = this.dialog.open(CrearVerboComponent, {
+      width: '500px',
+      data: '',
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.verboService.postVerbo(res)
+          .subscribe(res => {
+            this.hideSpinner();
+            M.toast({ html: 'Verbo registrado exitosamente!' })
+            this.getVerbos();
           })
       }
     });

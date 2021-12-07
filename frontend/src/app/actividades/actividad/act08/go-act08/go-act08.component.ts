@@ -133,7 +133,7 @@ export class GoAct08Component implements OnInit {
         subcategoria: imagen.subcategoria,
         urlImg: imagen.urlImg,
         flag: false,
-        verbo: imagen.verbo
+        color: imagen.color
       };
       this.cardsImg.push(objImg);
     });

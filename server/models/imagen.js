@@ -11,7 +11,8 @@ const ImagenSchema = new Schema({
     urlImg: { type: String, required: true },
     urlAudio: { type: String, required: true },
     definicion: { type: String, required: true },
-    verbo: {type: String, required : false}
+    verbo: {type: String},
+    color: {type: String}
 });
 
 module.exports = mongoose.model('Imagen', ImagenSchema);

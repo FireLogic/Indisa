@@ -18,7 +18,9 @@ imagenCtrl.createImagen = async (req, res) => {
         urlImg: req.body.urlImg,
         urlAudio: req.body.urlAudio,
         definicion: req.body.definicion,
-        verbo: req.body.verbo
+        verbo: req.body.verbo,
+        color: req.body.color
+
     });
     await imagen.save();
     res.json({
@@ -62,7 +64,8 @@ imagenCtrl.editImagen = async (req, res) => {
         urlImg: req.body.urlImg,
         urlAudio: req.body.urlAudio,
         definicion: req.body.definicion,
-        verbo: req.body.verbo
+        verbo: req.body.verbo,
+        color: req.body.color
     };
     await Imagen.findByIdAndUpdate(id, { $set: imagen }, { new: true });
     res.json({ status: 'Imagen actualizada' });

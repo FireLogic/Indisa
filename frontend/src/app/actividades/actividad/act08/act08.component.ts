@@ -181,8 +181,8 @@ export class Act08Component implements OnInit {
     this.imagenes.forEach(imagen => {
       if (!this.subcatSelected && this.actividadGroup.value.categoriasForm.length > 0) {
         this.actividadGroup.value.categoriasForm.forEach(cat => {
-          // FILTRO DE QUE LAS IMAGENES TENGAN VERBO
-          if ((imagen.categoria == cat.nombre) && (imagen.verbo != null)) {
+          // FILTRO DE QUE LAS IMAGENES TENGAN COLOR
+          if ((imagen.categoria == cat.nombre) && (imagen.color != null)) {
             filtroImg.push(imagen);
           }
         });
@@ -192,16 +192,16 @@ export class Act08Component implements OnInit {
       }
       else if (this.subcatSelected && this.subcatSelected.length == 0) {
         this.actividadGroup.value.categoriasForm.forEach(cat => {
-          // FILTRO DE QUE LAS IMAGENES TENGAN VERBO
-          if ((imagen.categoria == cat.nombre) && (imagen.verbo != null)) {
+          // FILTRO DE QUE LAS IMAGENES TENGAN COLOR
+          if ((imagen.categoria == cat.nombre) && (imagen.color != null)) {
             filtroImg.push(imagen);
           }
         });
       }
       else if (this.subcatSelected && this.subcatSelected.length > 0) {
         this.subcatSelected.forEach(subcat => {
-          // FILTRO DE QUE LAS IMAGENES TENGAN VERBO
-          if ((imagen.subcategoria == subcat) && (imagen.verbo != null)) {
+          // FILTRO DE QUE LAS IMAGENES TENGAN COLOR
+          if ((imagen.subcategoria == subcat) && (imagen.color != null)) {
             filtroImg.push(imagen);
           }
         });

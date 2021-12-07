@@ -28,6 +28,14 @@ import { GoAct07Component } from '../actividades/actividad/act07/go-act07/go-act
 import { UsuariosComponent } from '../ajustes/usuarios/usuarios.component';
 import { Constantes } from '../shared/utils/constantes';
 
+import { Act08Component } from '../actividades/actividad/act08/act08.component';
+import { GoAct08Component } from '../actividades/actividad/act08/go-act08/go-act08.component';
+import { Act09Component } from '../actividades/actividad/act09/act09.component';
+import { GoAct09Component } from '../actividades/actividad/act09/go-act09/go-act09.component';
+
+import { Act10Component } from '../actividades/actividad/act10/act10.component';
+import { GoAct10Component } from '../actividades/actividad/act10/go-act10/go-act10.component';
+
 
 const routes: Routes = [
   {
@@ -53,6 +61,14 @@ const routes: Routes = [
       { path: 'actividades/actividad-06-play', component: GoAct06Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPlay } },
       { path: 'actividades/actividad-07', component: Act07Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPro } },
       { path: 'actividades/actividad-07-play', component: GoAct07Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPlay } },
+      
+      { path: 'actividades/actividad-08', component: Act08Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPro } },
+      { path: 'actividades/actividad-08-play', component: GoAct08Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPlay } },
+      { path: 'actividades/actividad-09', component: Act09Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPro } },
+      { path: 'actividades/actividad-09-play', component: GoAct09Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPlay } },
+
+      { path: 'actividades/actividad-10', component: Act10Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPro } },
+      { path: 'actividades/actividad-10-play', component: GoAct10Component, canActivate: [AuthGuard], data: { permiso: Constantes.actividadesPlay } },
       // Ajustes
       { path: 'ajustes', component: MenuAjustesComponent, canActivate: [AuthGuard], data: { permiso: Constantes.menuAjustes } },
       { path: 'ajustes/perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { permiso: Constantes.perfil } },

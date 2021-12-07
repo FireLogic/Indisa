@@ -334,6 +334,11 @@ export class ListaActividadesComponent implements OnInit {
   goActividad(i) {
     const numAct = (i + 1);
     this.router.navigate(['/actividades/actividad-0' + numAct]);
+    
+    //Redirigir a la Actividad 10
+    if (numAct == 10){
+      this.router.navigate(['/actividades/actividad-10'])
+    }
   }
 
   regresar() {

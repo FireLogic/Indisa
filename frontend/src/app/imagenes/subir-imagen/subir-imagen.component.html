@@ -42,7 +42,7 @@
                 <!-- AGREGAR VERBO -->
                 <div class=" col-6 input-field">
                     <mat-form-field>
-                        <mat-label>Verbo</mat-label>
+                        <mat-label>Verbo (Opcional)</mat-label>
                         <mat-select name="verbo" formControlName="verbo">
                             <mat-option (click)="getVerbo(verbo)" *ngFor="let verbo of verbos"
                                 [value]="verbo.nombre">
@@ -93,6 +93,12 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
+
+                <div class="col-6 input-field">
+                    <input type="text" name="color" formControlName="color">
+                    <label>Color (Opcional)</label>
+                </div>
+
 
                 <div class="col-6">
                     <i class="material-icons tiny mr-1">image</i>

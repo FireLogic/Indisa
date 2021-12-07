@@ -10,6 +10,7 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { Constantes } from 'src/app/shared/utils/constantes';
 import { Usuario } from 'src/app/models/usuario';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -265,7 +266,7 @@ export class DashboardComponent implements OnInit {
 
   // Calcular datos a graficar para donut chart
   calcularDatosDonutChart(registros) {
-    let a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0, a7 = 0;
+    let a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0, a7 = 0, a10 = 0;
     let actividades = [];
 
     if (registros.length > 0) {
@@ -277,6 +278,7 @@ export class DashboardComponent implements OnInit {
         (registro.actividad.nombre == 'Actividad 5') ? a5++ : a5;
         (registro.actividad.nombre == 'Actividad 6') ? a6++ : a6;
         (registro.actividad.nombre == 'Actividad 7') ? a7++ : a7;
+        (registro.actividad.nombre == 'Actividad 10') ? a10++ : a10;
       });
 
       actividades.push(a1);
@@ -286,6 +288,7 @@ export class DashboardComponent implements OnInit {
       actividades.push(a5);
       actividades.push(a6);
       actividades.push(a7);
+      actividades.push(a10);
     } else {
       actividades = [];
     }
@@ -343,7 +346,7 @@ export class DashboardComponent implements OnInit {
     (datosActividades.length == 0) ? this.DchartEmpty = true : this.DchartEmpty = false;
 
     this.doughnutChartLabels = ['Actividad 1', 'Actividad 2', 'Actividad 3',
-      'Actividad 4', 'Actividad 5', 'Actividad 6', 'Actividad 7'];
+      'Actividad 4', 'Actividad 5', 'Actividad 6', 'Actividad 7', 'Actividad 8', 'Actividad 9', 'Actividad 10'];
     this.doughnutChartData = datosActividades;
     this.doughnutChartType = 'doughnut';
 

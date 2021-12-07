@@ -88,7 +88,8 @@ export class EditarImagenComponent implements OnInit {
     urlImg: new FormControl(''),
     urlAudio: new FormControl(''),
     definicion: new FormControl('', [Validators.required]),
-    verbo: new FormControl('', [Validators.required])
+    verbo: new FormControl(''),
+    color : new FormControl('')
   })
 
   constructor(private readonly imagenService: ImagenService,

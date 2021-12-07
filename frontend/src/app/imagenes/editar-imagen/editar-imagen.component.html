@@ -26,6 +26,12 @@
                     <input type="text" name="definicion" [(ngModel)]="imagen.definicion" formControlName="definicion">
                 </div>
 
+                <div class="col-m-6 col-12">
+                    <label>Color</label>
+                    <input type="text" name="color" [(ngModel)]="imagen.color" formControlName="color"
+                        placeholder="Color">
+                </div>
+
                 <div class=" col-sm-6 col-12 input-field">
                     <mat-form-field>
                         <mat-label>Categoría</mat-label>
@@ -80,10 +86,13 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
+                
 
                 <div class="col-sm-6 col-12 text-center">
                     <img [src]=imagen.urlImg height="150" width="185">
                 </div>
+                
+                
 
                 <div class=" col-sm-6 col-12 input-field">
                     <mat-form-field>
@@ -102,6 +111,13 @@
                     </a>
                 </div>
 
+                <div class="col-sm-6 col-12 text-center mt-4">
+                    <button title="Reproducir audio" type="button" class="btn btn-largue orange darken-3 ml-2"
+                        (click)="playAudio()">
+                        <i class="material-icons center">play_circle_outline</i>
+                    </button>
+                </div>
+
                 <div class="col-sm-6 col-12 mt-4">
                     <i class="material-icons tiny mr-1">image</i>
                     <mat-label>Elegir una nueva imagen (jpg o png)</mat-label>
@@ -111,12 +127,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-12 text-center mt-4">
-                    <button title="Reproducir audio" type="button" class="btn btn-largue orange darken-3 ml-2"
-                        (click)="playAudio()">
-                        <i class="material-icons center">play_circle_outline</i>
-                    </button>
-                </div>
+                
 
                 <div class="col-sm-6 col-12">
                     <i class="material-icons tiny mr-1">audiotrack</i>

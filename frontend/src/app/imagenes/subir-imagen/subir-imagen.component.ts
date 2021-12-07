@@ -87,10 +87,11 @@ export class SubirImagenComponent implements OnInit {
       Validators.max(10),
     ]),
     categoria: new FormControl('', [Validators.required]),
-    verbo: new FormControl('', [Validators.required]),
+    verbo: new FormControl(''),
     subcategoria: new FormControl('', [Validators.required]),
     fonema: new FormControl(''),
     difono: new FormControl(''),
+    color: new FormControl(''),
     urlImg: new FormControl('', [Validators.required]),
     urlAudio: new FormControl('', [Validators.required]),
     definicion: new FormControl('', [Validators.required])

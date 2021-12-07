@@ -23,11 +23,22 @@ import { GoAct05Component } from './actividad/act05/go-act05/go-act05.component'
 import { GoAct06Component } from './actividad/act06/go-act06/go-act06.component';
 import { GoAct07Component } from './actividad/act07/go-act07/go-act07.component';
 
+import { Act08Component } from './actividad/act08/act08.component';
+import { GoAct08Component } from './actividad/act08/go-act08/go-act08.component';
+
+import { Act09Component } from './actividad/act09/act09.component';
+import { GoAct09Component } from './actividad/act09/go-act09/go-act09.component';
+
+import { Act10Component } from './actividad/act10/act10.component';
+import { GoAct10Component } from './actividad/act10/go-act10/go-act10.component';
+
+
 
 @NgModule({
   declarations: [ListaActividadesComponent, Act01Component, GoAct01Component, Act02Component, 
     Act03Component, GoAct02Component, GoAct03Component, Act04Component, Act05Component, Act06Component,
-     Act07Component, GoAct04Component, GoAct05Component, GoAct06Component, GoAct07Component],
+     Act07Component, GoAct04Component, GoAct05Component, GoAct06Component, GoAct07Component, Act10Component, GoAct10Component,
+     Act08Component, GoAct08Component, Act09Component, GoAct09Component,],
   imports: [
     CommonModule,
     ActividadesRoutingModule,

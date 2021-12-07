@@ -16,6 +16,16 @@ import { GoAct06Component } from './actividad/act06/go-act06/go-act06.component'
 import { Act07Component } from './actividad/act07/act07.component';
 import { GoAct07Component } from './actividad/act07/go-act07/go-act07.component';
 
+import { Act08Component } from './actividad/act08/act08.component';
+import { GoAct08Component } from './actividad/act08/go-act08/go-act08.component';
+
+import { Act09Component } from './actividad/act09/act09.component';
+import { GoAct09Component } from './actividad/act09/go-act09/go-act09.component';
+
+import { Act10Component } from './actividad/act10/act10.component';
+import { GoAct10Component } from './actividad/act10/go-act10/go-act10.component';
+
+
 const routes: Routes = [
   { path: '', component: ListaActividadesComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }

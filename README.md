@@ -41,7 +41,5 @@ To run the application locally for *development*, you can use the following comm
 
 ## Author
 
-* Francisco Parra H.
- [franciscoparrahuentecura@gmail.com](mailto:franciscoparrahuentecura@gmail.com)
 
 
